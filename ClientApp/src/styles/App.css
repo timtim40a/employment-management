@@ -1,0 +1,40 @@
+#root {
+    padding: 5%;
+    display: grid;
+    /*justify-content: center;*/
+}
+
+#title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    justify-self: center;
+
+    grid-row: 1;
+}
+
+#main {
+    grid-row: 4;
+    column-span: all;
+}
+
+
+#div_toggle {
+    display: grid;
+}
+
+.div_dialogue {
+    display: grid;
+    grid-row: 2;
+    width: 30%;
+}
+
+.btn_toggle {
+    grid-row: 3;
+    width: 15%;
+    margin-bottom: 10px;
+}
+
+.label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
