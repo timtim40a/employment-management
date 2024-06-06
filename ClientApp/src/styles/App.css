@@ -1,6 +1,13 @@
+body {
+    margin: 0px;
+}
+
 #root {
     padding: 5%;
     display: grid;
+    background-image: url('/background.jpg');
+    background-size: cover;
+    background-position: center;
     /*justify-content: center;*/
 }
 
@@ -18,6 +25,7 @@
     grid-column: 1;
     margin: 10px;
     height: 40px;
+    width: 50%
 }
 
 #div_add{
@@ -30,6 +38,7 @@
     grid-column: 1;
     margin: 10px;
     height: 40px;
+    width: 50%
 }
 
 #div_update {
@@ -38,19 +47,38 @@
 }
 
 table {
-    grid-row-start: 2;
-    grid-row-end: 7;
-    grid-column: 2;
-
+    width: 700px;
+    height: 700px;
+    justify-self: end;
 }
 
 .div_dialogue {
     display: grid;
     grid-row: 2;
-    width: 30%;
+    width: 80%;
 }
 
 .label {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
+    margin-left: 10px;
+}
+
+.table_container {
+    grid-row-start: 2;
+    grid-row-end: 7;
+    grid-column: 2;
+    overflow-y: scroll;
+    /* Enable vertical scrolling */
+}
+
+.background {
+    display: grid;
+    background-color: white;
+    height: 100vh;
+    position:sticky;
+    border-radius: 12px;
+    grid-template-rows: auto auto auto auto auto auto auto;
+    grid-template-columns: 1fr 1fr;
+    /* Set the height to cover the entire viewport */
 }

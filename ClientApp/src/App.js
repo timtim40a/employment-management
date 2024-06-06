@@ -13,14 +13,14 @@ export default function () {
   const [updateValue, setUpdateValue] = useState('')
   const [employeeToUpdate, setEmployeeToUpdate] = useState(null) // Add state for employee to update
 
-  useEffect(() => {
-    fetchEmployees()
-  }, [])
-
   async function fetchEmployees() {
     const data = await getEmployees()
     setEmployees(data)
   }
+
+  useEffect(() => {
+    fetchEmployees()
+  }, [])
 
   async function getEmployees() {
     return fetch('/employees').then((response) => response.json())
@@ -67,60 +67,64 @@ export default function () {
 
   return (
     <StrictMode>
-      <>
-        <h1 id="title">Employee Management</h1>
-        <button
-          id="btn_add"
-          className="btn_toggle"
-          onClick={(e) => setAdd(!add)}
-        >
-          Toggle Add
-        </button>
-        {add ? (
-          <div id="div_add" className="div_dialogue">
-            <Input
-              placeholder={'Enter new name here...'}
-              value={newName}
-              onInputChange={(e) => setNewName(e.target.value)}
+      <div className="background">
+        <>
+          <h1 id="title">Employee Management</h1>
+          <button
+            id="btn_add"
+            className="btn_toggle"
+            onClick={(e) => setAdd(!add)}
+          >
+            Toggle Add
+          </button>
+          {add ? (
+            <div id="div_add" className="div_dialogue">
+              <Input
+                placeholder={'Enter new name here...'}
+                value={newName}
+                onInputChange={(e) => setNewName(e.target.value)}
+              />
+              <Input
+                placeholder={'Enter new number here...'}
+                value={newValue}
+                onInputChange={(e) => setNewValue(e.target.value)}
+              />
+              <button onClick={handleCreate}> Save </button>
+            </div>
+          ) : (
+            <div></div>
+          )}
+          <button
+            id="btn_update"
+            className="btn_toggle"
+            onClick={(e) => setUpdate(!update)}
+          >
+            Toggle Update
+          </button>
+          {employeeToUpdate && update ? (
+            <div id="div_update" className="div_dialogue">
+              <p className="label">{employeeToUpdate.name}</p>
+              <Input
+                placeholder={'Enter the number to update...'}
+                value={updateValue}
+                onInputChange={(e) => setUpdateValue(e.target.value)}
+              />
+              <Button text="Update" onClick={handleUpdate} />
+            </div>
+          ) : (
+            <div></div>
+          )}
+          <div className="table_container">
+            <EmployeesList
+              id="main"
+              employees={employees}
+              columns={['Name', 'Number']}
+              update={update}
+              onUpdateClick={handleEmployeeUpdateClick}
             />
-            <Input
-              placeholder={'Enter new number here...'}
-              value={newValue}
-              onInputChange={(e) => setNewValue(e.target.value)}
-            />
-            <button onClick={handleCreate}> Save </button>
           </div>
-        ) : (
-          <div></div>
-        )}
-        <button
-          id="btn_update"
-          className="btn_toggle"
-          onClick={(e) => setUpdate(!update)}
-        >
-          Toggle Update
-        </button>
-        {employeeToUpdate && update ? (
-          <div id="div_update" className="div_dialogue">
-            <p className="label">{employeeToUpdate.name}</p>
-            <Input
-              placeholder={'Enter the number to update...'}
-              value={updateValue}
-              onInputChange={(e) => setUpdateValue(e.target.value)}
-            />
-            <Button text="Update" onClick={handleUpdate} />
-          </div>
-        ) : (
-          <div></div>
-        )}
-        <EmployeesList
-          id="main"
-          employees={employees}
-          columns={['Name', 'Number']}
-          update={update}
-          onUpdateClick={handleEmployeeUpdateClick}
-        />
-      </>
+        </>
+      </div>
     </StrictMode>
   )
 }
