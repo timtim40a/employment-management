@@ -69,8 +69,15 @@ export default function () {
     <StrictMode>
       <>
         <h1 id="title">Employee Management</h1>
+        <button
+          id="btn_add"
+          className="btn_toggle"
+          onClick={(e) => setAdd(!add)}
+        >
+          Toggle Add
+        </button>
         {add ? (
-          <div className="div_dialogue">
+          <div id="div_add" className="div_dialogue">
             <Input
               placeholder={'Enter new name here...'}
               value={newName}
@@ -86,8 +93,15 @@ export default function () {
         ) : (
           <div></div>
         )}
+        <button
+          id="btn_update"
+          className="btn_toggle"
+          onClick={(e) => setUpdate(!update)}
+        >
+          Toggle Update
+        </button>
         {employeeToUpdate && update ? (
-          <div className="div_dialogue">
+          <div id="div_update" className="div_dialogue">
             <p className="label">{employeeToUpdate.name}</p>
             <Input
               placeholder={'Enter the number to update...'}
@@ -99,14 +113,6 @@ export default function () {
         ) : (
           <div></div>
         )}
-        <div id="div_toggle">
-          <button className="btn_toggle" onClick={(e) => setUpdate(!update)}>
-            Toggle Update
-          </button>
-          <button className="btn_toggle" onClick={(e) => setAdd(!add)}>
-            Toggle Add
-          </button>
-        </div>
         <EmployeesList
           id="main"
           employees={employees}
