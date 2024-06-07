@@ -25,7 +25,8 @@ body {
     grid-column: 1;
     margin: 10px;
     height: 40px;
-    width: 50%
+    width: 50%;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.34);
 }
 
 #div_add{
@@ -38,7 +39,8 @@ body {
     grid-column: 1;
     margin: 10px;
     height: 40px;
-    width: 50%
+    width: 50%;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.34);
 }
 
 #div_update {
@@ -64,6 +66,13 @@ table {
     margin-left: 10px;
 }
 
+.btn_submit {
+    height: 40px;
+    width: 20%;
+    justify-self: end;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.34);
+}
+
 .table_container {
     grid-row-start: 2;
     grid-row-end: 7;
@@ -80,5 +89,6 @@ table {
     border-radius: 12px;
     grid-template-rows: auto auto auto auto auto auto auto;
     grid-template-columns: 1fr 1fr;
+    box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.66);
     /* Set the height to cover the entire viewport */
 }

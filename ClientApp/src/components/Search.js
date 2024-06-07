@@ -5,7 +5,7 @@ const Search = ({ onSearch }) => {
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value)
-    onSearch(event.target.value) // Pass the search query to the parent component
+    onSearch(event.target.value)
   }
 
   return (

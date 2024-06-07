@@ -2,10 +2,12 @@ import React, { StrictMode, useState, useEffect } from 'react'
 import Button from './components/Button'
 import Input from './components/Input'
 import EmployeesList from './components/EmployeesList'
+import Search from './components/Search'
 import './styles/App.css'
 
 export default function () {
   const [employees, setEmployees] = useState([])
+  const [filteredEmployees, setFilteredEmployees] = useState([])
   const [add, setAdd] = useState('')
   const [newName, setNewName] = useState('')
   const [newValue, setNewValue] = useState('')
@@ -65,6 +67,19 @@ export default function () {
     setUpdateValue(employee.value)
   }
 
+  const handleSearch = (searchTerm) => {
+    const filtered = searchTerm
+      ? employees.filter((employee) =>
+          employee.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      : employees
+    setFilteredEmployees(filtered)
+  }
+
+  useEffect(() => {
+    handleSearch('')
+  }, [employees])
+
   return (
     <StrictMode>
       <div className="background">
@@ -89,7 +104,9 @@ export default function () {
                 value={newValue}
                 onInputChange={(e) => setNewValue(e.target.value)}
               />
-              <button onClick={handleCreate}> Save </button>
+              <button className="btn_submit" onClick={handleCreate}>
+                Save
+              </button>
             </div>
           ) : (
             <div></div>
@@ -109,15 +126,18 @@ export default function () {
                 value={updateValue}
                 onInputChange={(e) => setUpdateValue(e.target.value)}
               />
-              <Button text="Update" onClick={handleUpdate} />
+              <button className="btn_submit" onClick={handleUpdate}>
+                Update
+              </button>
             </div>
           ) : (
             <div></div>
           )}
           <div className="table_container">
+            <Search onSearch={handleSearch} />
             <EmployeesList
               id="main"
-              employees={employees}
+              employees={filteredEmployees}
               columns={['Name', 'Number']}
               update={update}
               onUpdateClick={handleEmployeeUpdateClick}
